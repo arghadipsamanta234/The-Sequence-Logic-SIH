@@ -1,0 +1,23 @@
+{
+  "accession": "P07564",
+  "source_db": "UniProtKB",
+  "name": "Envelope protein E",
+  "gene_symbol": "E",
+  "organism": "Dengue virus type 2",
+  "common_name": "DENV-2",
+  "tax_id": 11060,
+  "lineage": "Viruses; Riboviria; Orthornavirae; Kitrinoviricota; Flaviricetes; Amarillovirales; Flaviviridae; Flavivirus",
+  "pdb_reference": "1OAN",
+  "function_summary": "Binds to host cell surface receptors and mediates viral entry via receptor-mediated endocytosis.",
+  "sequence": "MRCVGIGNRDFVEGLSGATWVDVVLEHGSCVTTMAKNKPTLDFELIKTEAKQPATLRKYCIEAKLTNTTTESRCPTQGEPSLNEEQDKRFVCKHSMVDRGWGNGCGLFGKGGIVTCAMFTCKKNMEGKVVQPENLEYTIVITPHSGEEHAVGNDTGKHGKEIKITPQSSITEAELTGYGTVTMECSPRTGLDFNEMVLLQMENKAWLVHRQWFLDLPLPWLPGADTQGSNWIQKETLVTFKNPHAKKQDVVVLGSQEGAMHTALTGATEIQTSGTTTIFAGHLKCRLKMDKLTLKGMSYVMCTGSFKLEKEVAETQHGTVLVQVKYEGTDAPCKIPFSTQDEKGVTQNGRLITANPIVTDKEKPVNIEAEPPFGESYIVVGAGEKALKLSWFKKGSSIGKMFEATARGARRMAILGDTAWDFGSLGGVFTSIGKALHQVFGAIYGAAFSGVSWTMKILIGVIITWIGMNSRSTSLSVTLVLVGIVTLYLGVMVQA",
+  "known_protective_epitopes": [
+    {
+      "type": "CTL_MHC_I",
+      "peptide": "FHTMWHVTR",
+      "start": 108,
+      "end": 116,
+      "allele": "HLA-A*02:01",
+      "iedb_reference_id": "21389"
+    }
+  ]
+}

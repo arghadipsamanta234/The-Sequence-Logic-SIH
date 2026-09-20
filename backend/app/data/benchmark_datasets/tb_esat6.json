@@ -1,0 +1,23 @@
+{
+  "accession": "P9WNK5",
+  "source_db": "UniProtKB",
+  "name": "6 kDa early secretory antigenic target ESAT-6",
+  "gene_symbol": "esxA",
+  "organism": "Mycobacterium tuberculosis",
+  "common_name": "M. tuberculosis",
+  "tax_id": 1773,
+  "lineage": "Bacteria; Actinomycetota; Actinomycetes; Mycobacteriales; Mycobacteriaceae; Mycobacterium",
+  "pdb_reference": "1WA8",
+  "function_summary": "Major secreted virulence factor of M. tuberculosis and potent inducer of cell-mediated immunity (IFN-gamma).",
+  "sequence": "MTEQQWNFAGIEAAASAIQGNVTSIHSLLDEGKQSLTKLAAAWGGSGSEAYQGVQQKWDATATELNNALQNLARTISEAGQAMASTEGNVTGMFA",
+  "known_protective_epitopes": [
+    {
+      "type": "HTL_MHC_II",
+      "peptide": "AAAWGGSGSEAYQGV",
+      "start": 38,
+      "end": 52,
+      "allele": "HLA-DRB1*01:01",
+      "iedb_reference_id": "8412"
+    }
+  ]
+}
