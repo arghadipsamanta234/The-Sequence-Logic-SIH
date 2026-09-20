@@ -6,7 +6,7 @@ import type {
   AnalysisDetailResponse
 } from './types';
 
-const API_BASE = 'http://127.0.0.1:8000/api/v1';
+const API_BASE = 'https://the-sequence-logic-sih.onrender.com/api/v1';
 
 const apiClient = axios.create({
   baseURL: API_BASE,
@@ -88,7 +88,7 @@ export const api = {
 
   // Health
   checkHealth: async () => {
-    const res = await axios.get('http://127.0.0.1:8000/health');
+    const res = await axios.get('https://the-sequence-logic-sih.onrender.com/health');
     return res.data;
   }
 };
