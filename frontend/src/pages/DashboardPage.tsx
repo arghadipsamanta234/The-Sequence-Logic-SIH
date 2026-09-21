@@ -48,6 +48,7 @@ export const DashboardPage: React.FC = () => {
       <section className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-white via-blue-50 to-cyan-50 p-6 sm:p-8 lg:p-10 shadow-card">
 
         <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl" />
+
         <div className="absolute -bottom-40 right-1/4 w-96 h-96 rounded-full bg-cyan-300/20 blur-3xl" />
 
         <div className="relative z-10 max-w-4xl">
@@ -55,6 +56,7 @@ export const DashboardPage: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
+
             <span>SIH 2026 Prototype</span>
 
             <span className="w-1 h-1 rounded-full bg-brand-500" />
@@ -88,7 +90,9 @@ export const DashboardPage: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm transition-all shadow-blue"
             >
               <PlusCircle className="w-4 h-4" />
+
               Launch New Analysis
+
               <ArrowRight className="w-4 h-4" />
             </Link>
 
@@ -97,16 +101,19 @@ export const DashboardPage: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-blue-50 text-brand-700 font-medium text-sm border border-blue-100 transition-all"
             >
               <Database className="w-4 h-4 text-brand-500" />
+
               View Data Sources
             </Link>
 
           </div>
+
         </div>
 
         {/* Scientific visual */}
         <div className="hidden xl:flex absolute right-10 top-1/2 -translate-y-1/2 w-64 h-64 items-center justify-center">
 
           <div className="absolute inset-8 rounded-full border border-brand-200" />
+
           <div className="absolute inset-14 rounded-full border border-cyan-200" />
 
           <div className="w-28 h-28 rounded-3xl bg-white border border-blue-100 flex items-center justify-center rotate-12 shadow-blue">
@@ -114,7 +121,9 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           <div className="absolute top-8 right-8 w-3 h-3 rounded-full bg-brand-500" />
+
           <div className="absolute bottom-12 left-8 w-2 h-2 rounded-full bg-cyan-500" />
+
           <div className="absolute top-1/2 right-0 w-2 h-2 rounded-full bg-brand-400" />
 
         </div>
@@ -311,6 +320,7 @@ export const DashboardPage: React.FC = () => {
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                 >
                   Load Preset
+
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
 
@@ -353,6 +363,7 @@ export const DashboardPage: React.FC = () => {
             className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700"
           >
             Create New
+
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
 
@@ -510,6 +521,7 @@ export const DashboardPage: React.FC = () => {
                         className="inline-flex items-center gap-1 text-xs text-brand-600 hover:text-brand-700 font-semibold"
                       >
                         View Pipeline
+
                         <ArrowRight className="w-3 h-3" />
                       </Link>
 
