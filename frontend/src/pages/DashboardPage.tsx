@@ -44,40 +44,36 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-8">
 
-      {/* ========================================================= */}
       {/* HERO */}
-      {/* ========================================================= */}
+      <section className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-white via-blue-50 to-cyan-50 p-6 sm:p-8 lg:p-10 shadow-card">
 
-      <section className="relative overflow-hidden rounded-3xl border border-slate-800/80 bg-gradient-to-br from-[#0d1b2a] via-[#0b1928] to-[#07111f] p-6 sm:p-8 lg:p-10">
-
-        {/* Decorative background */}
-        <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute -bottom-40 right-1/4 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl" />
+        <div className="absolute -bottom-40 right-1/4 w-96 h-96 rounded-full bg-cyan-300/20 blur-3xl" />
 
         <div className="relative z-10 max-w-4xl">
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>SIH 2026 Prototype</span>
 
-            <span className="w-1 h-1 rounded-full bg-cyan-400" />
+            <span className="w-1 h-1 rounded-full bg-brand-500" />
 
-            <span className="text-cyan-400/80">
+            <span className="text-brand-500">
               Computational Pipeline
             </span>
           </div>
 
           {/* Heading */}
-          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
+          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ink-900">
             Rational Multi-Epitope
-            <span className="block bg-gradient-to-r from-cyan-300 via-teal-300 to-indigo-300 bg-clip-text text-transparent">
+
+            <span className="block bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 bg-clip-text text-transparent">
               Vaccine Architecture
             </span>
           </h2>
 
-          {/* Description */}
-          <p className="mt-5 max-w-3xl text-sm sm:text-base leading-7 text-slate-400">
+          <p className="mt-5 max-w-3xl text-sm sm:text-base leading-7 text-ink-600">
             Automating the reverse-vaccinology workflow from antigen sequence
             ingestion through epitope prediction, safety filtering, construct
             design, structural analysis, receptor docking, and research
@@ -89,7 +85,7 @@ export const DashboardPage: React.FC = () => {
 
             <Link
               to="/new-analysis"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/20"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm transition-all shadow-blue"
             >
               <PlusCircle className="w-4 h-4" />
               Launch New Analysis
@@ -98,9 +94,9 @@ export const DashboardPage: React.FC = () => {
 
             <Link
               to="/sources"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-800/70 hover:bg-slate-700/70 text-slate-200 font-medium text-sm border border-slate-700/70 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-blue-50 text-brand-700 font-medium text-sm border border-blue-100 transition-all"
             >
-              <Database className="w-4 h-4 text-cyan-400" />
+              <Database className="w-4 h-4 text-brand-500" />
               View Data Sources
             </Link>
 
@@ -110,155 +106,156 @@ export const DashboardPage: React.FC = () => {
         {/* Scientific visual */}
         <div className="hidden xl:flex absolute right-10 top-1/2 -translate-y-1/2 w-64 h-64 items-center justify-center">
 
-          <div className="absolute inset-8 rounded-full border border-cyan-400/10" />
-          <div className="absolute inset-14 rounded-full border border-cyan-400/10" />
+          <div className="absolute inset-8 rounded-full border border-brand-200" />
+          <div className="absolute inset-14 rounded-full border border-cyan-200" />
 
-          <div className="w-28 h-28 rounded-3xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center rotate-12">
-            <Dna className="w-14 h-14 text-cyan-300 -rotate-12" />
+          <div className="w-28 h-28 rounded-3xl bg-white border border-blue-100 flex items-center justify-center rotate-12 shadow-blue">
+            <Dna className="w-14 h-14 text-brand-500 -rotate-12" />
           </div>
 
-          <div className="absolute top-8 right-8 w-3 h-3 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/50" />
-          <div className="absolute bottom-12 left-8 w-2 h-2 rounded-full bg-teal-400" />
-          <div className="absolute top-1/2 right-0 w-2 h-2 rounded-full bg-indigo-400" />
+          <div className="absolute top-8 right-8 w-3 h-3 rounded-full bg-brand-500" />
+          <div className="absolute bottom-12 left-8 w-2 h-2 rounded-full bg-cyan-500" />
+          <div className="absolute top-1/2 right-0 w-2 h-2 rounded-full bg-brand-400" />
 
         </div>
+
       </section>
 
 
-      {/* ========================================================= */}
       {/* METRICS */}
-      {/* ========================================================= */}
-
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
 
         {/* Total Analyses */}
-        <div className="group rounded-2xl bg-[#0d1b2a]/80 border border-slate-800/80 p-5 hover:border-cyan-400/20 transition-all">
+        <div className="group rounded-2xl bg-white border border-blue-100 p-5 shadow-card hover:shadow-soft hover:border-brand-200 transition-all">
 
           <div className="flex items-center justify-between">
 
-            <span className="text-xs font-medium text-slate-400">
+            <span className="text-xs font-medium text-ink-500">
               Total Analyses
             </span>
 
-            <div className="w-9 h-9 rounded-lg bg-cyan-400/10 flex items-center justify-center">
-              <Layers className="w-4 h-4 text-cyan-400" />
+            <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
+              <Layers className="w-4 h-4 text-brand-500" />
             </div>
 
           </div>
 
-          <p className="text-3xl font-bold text-white mt-4">
+          <p className="text-3xl font-bold text-ink-900 mt-4">
             {analyses.length}
           </p>
 
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-ink-500">
             Tracked in SQLite database
           </span>
+
         </div>
 
 
         {/* Benchmarks */}
-        <div className="group rounded-2xl bg-[#0d1b2a]/80 border border-slate-800/80 p-5 hover:border-teal-400/20 transition-all">
+        <div className="group rounded-2xl bg-white border border-blue-100 p-5 shadow-card hover:shadow-soft hover:border-cyan-200 transition-all">
 
           <div className="flex items-center justify-between">
 
-            <span className="text-xs font-medium text-slate-400">
+            <span className="text-xs font-medium text-ink-500">
               Curated Benchmarks
             </span>
 
-            <div className="w-9 h-9 rounded-lg bg-teal-400/10 flex items-center justify-center">
-              <Dna className="w-4 h-4 text-teal-400" />
+            <div className="w-9 h-9 rounded-lg bg-cyan-50 flex items-center justify-center">
+              <Dna className="w-4 h-4 text-cyan-500" />
             </div>
 
           </div>
 
-          <p className="text-3xl font-bold text-white mt-4">
+          <p className="text-3xl font-bold text-ink-900 mt-4">
             {benchmarks.length}
           </p>
 
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-ink-500">
             Gold-standard reference pathogens
           </span>
+
         </div>
 
 
         {/* Pipeline */}
-        <div className="group rounded-2xl bg-[#0d1b2a]/80 border border-slate-800/80 p-5 hover:border-indigo-400/20 transition-all">
+        <div className="group rounded-2xl bg-white border border-blue-100 p-5 shadow-card hover:shadow-soft hover:border-brand-200 transition-all">
 
           <div className="flex items-center justify-between">
 
-            <span className="text-xs font-medium text-slate-400">
+            <span className="text-xs font-medium text-ink-500">
               Active Pipeline Stages
             </span>
 
-            <div className="w-9 h-9 rounded-lg bg-indigo-400/10 flex items-center justify-center">
-              <Clock className="w-4 h-4 text-indigo-400" />
+            <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
+              <Clock className="w-4 h-4 text-brand-500" />
             </div>
 
           </div>
 
-          <p className="text-3xl font-bold text-white mt-4">
+          <p className="text-3xl font-bold text-ink-900 mt-4">
             9 / 9
           </p>
 
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-ink-500">
             Full end-to-end stages mapped
           </span>
+
         </div>
 
 
         {/* Scientific Integrity */}
-        <div className="group rounded-2xl bg-[#0d1b2a]/80 border border-slate-800/80 p-5 hover:border-emerald-400/20 transition-all">
+        <div className="group rounded-2xl bg-white border border-blue-100 p-5 shadow-card hover:shadow-soft hover:border-emerald-200 transition-all">
 
           <div className="flex items-center justify-between">
 
-            <span className="text-xs font-medium text-slate-400">
+            <span className="text-xs font-medium text-ink-500">
               Scientific Integrity
             </span>
 
-            <div className="w-9 h-9 rounded-lg bg-emerald-400/10 flex items-center justify-center">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center">
+              <ShieldCheck className="w-4 h-4 text-emerald-500" />
             </div>
 
           </div>
 
-          <p className="text-3xl font-bold text-emerald-400 mt-4">
+          <p className="text-3xl font-bold text-emerald-500 mt-4">
             100%
           </p>
 
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-ink-500">
             Zero synthetic fabrication policy
           </span>
+
         </div>
 
       </section>
 
 
-      {/* ========================================================= */}
       {/* BENCHMARKS */}
-      {/* ========================================================= */}
-
       <section className="space-y-4">
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
 
           <div>
+
             <div className="flex items-center gap-2">
 
-              <FlaskConical className="w-5 h-5 text-cyan-400" />
+              <FlaskConical className="w-5 h-5 text-brand-500" />
 
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-bold text-ink-900">
                 Gold-Standard Benchmark Pathogens
               </h3>
 
             </div>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-ink-500">
               Real, peer-reviewed public biological data ready for immediate
               pipeline analysis.
             </p>
+
           </div>
 
-          <span className="text-[10px] uppercase tracking-wider text-slate-600">
+          <span className="text-[10px] uppercase tracking-wider text-ink-500">
             {benchmarks.length} references
           </span>
 
@@ -271,47 +268,47 @@ export const DashboardPage: React.FC = () => {
 
             <div
               key={bench.accession}
-              className="group rounded-2xl bg-[#0d1b2a]/70 border border-slate-800/80 hover:border-cyan-400/30 hover:bg-[#0f2032] transition-all p-5 flex flex-col justify-between min-h-[220px]"
+              className="group rounded-2xl bg-white border border-blue-100 hover:border-brand-200 hover:shadow-soft transition-all p-5 flex flex-col justify-between min-h-[220px]"
             >
 
               <div>
 
                 <div className="flex items-center justify-between mb-4">
 
-                  <span className="text-[11px] font-mono px-2 py-1 rounded-md bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+                  <span className="text-[11px] font-mono px-2 py-1 rounded-md bg-brand-50 text-brand-600 border border-brand-100">
                     {bench.accession}
                   </span>
 
-                  <span className="text-[11px] text-slate-500 font-mono">
+                  <span className="text-[11px] text-ink-500 font-mono">
                     {bench.sequence.length} aa
                   </span>
 
                 </div>
 
-                <h4 className="font-semibold text-white text-base">
+                <h4 className="font-semibold text-ink-900 text-base">
                   {bench.name}
                 </h4>
 
-                <p className="text-xs text-teal-400/90 font-medium mt-1">
+                <p className="text-xs text-cyan-600 font-medium mt-1">
                   {bench.organism}
                 </p>
 
-                <p className="text-xs text-slate-500 mt-3 line-clamp-3 leading-5">
+                <p className="text-xs text-ink-500 mt-3 line-clamp-3 leading-5">
                   {bench.function_summary}
                 </p>
 
               </div>
 
 
-              <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <div className="pt-4 mt-4 border-t border-blue-100 flex items-center justify-between">
 
-                <span className="text-[10px] text-slate-500">
+                <span className="text-[10px] text-ink-500">
                   PDB: {bench.pdb_reference || 'Available'}
                 </span>
 
                 <Link
                   to={`/new-analysis?preset=${bench.accession}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                 >
                   Load Preset
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -324,36 +321,36 @@ export const DashboardPage: React.FC = () => {
           ))}
 
         </div>
+
       </section>
 
 
-      {/* ========================================================= */}
       {/* RECENT ANALYSES */}
-      {/* ========================================================= */}
-
       <section className="space-y-4">
 
         <div className="flex items-center justify-between">
 
           <div>
+
             <div className="flex items-center gap-2">
 
-              <Activity className="w-5 h-5 text-cyan-400" />
+              <Activity className="w-5 h-5 text-brand-500" />
 
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-bold text-ink-900">
                 Recent Pipeline Executions
               </h3>
 
             </div>
 
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-ink-500 mt-1">
               Monitor recently submitted analysis workflows.
             </p>
+
           </div>
 
           <Link
             to="/new-analysis"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700"
           >
             Create New
             <ChevronRight className="w-3.5 h-3.5" />
@@ -362,11 +359,11 @@ export const DashboardPage: React.FC = () => {
         </div>
 
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-800/80 bg-[#0d1b2a]/60">
+        <div className="overflow-x-auto rounded-2xl border border-blue-100 bg-white shadow-card">
 
-          <table className="w-full text-left text-sm text-slate-300">
+          <table className="w-full text-left text-sm text-ink-700">
 
-            <thead className="bg-slate-900/60 text-[10px] uppercase tracking-wider text-slate-500 border-b border-slate-800/80">
+            <thead className="bg-blue-50 text-[10px] uppercase tracking-wider text-ink-500 border-b border-blue-100">
 
               <tr>
 
@@ -399,7 +396,7 @@ export const DashboardPage: React.FC = () => {
             </thead>
 
 
-            <tbody className="divide-y divide-slate-800/60 font-mono text-xs">
+            <tbody className="divide-y divide-blue-100 font-mono text-xs">
 
               {loading ? (
 
@@ -407,15 +404,17 @@ export const DashboardPage: React.FC = () => {
 
                   <td
                     colSpan={6}
-                    className="py-12 text-center text-slate-500"
+                    className="py-12 text-center text-ink-500"
                   >
+
                     <div className="flex items-center justify-center gap-2">
 
-                      <Activity className="w-4 h-4 animate-pulse text-cyan-400" />
+                      <Activity className="w-4 h-4 animate-pulse text-brand-500" />
 
                       Loading pipeline records...
 
                     </div>
+
                   </td>
 
                 </tr>
@@ -431,17 +430,19 @@ export const DashboardPage: React.FC = () => {
 
                     <div className="flex flex-col items-center gap-3">
 
-                      <div className="w-10 h-10 rounded-xl bg-slate-800/70 flex items-center justify-center">
-                        <Database className="w-5 h-5 text-slate-500" />
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+
+                        <Database className="w-5 h-5 text-ink-500" />
+
                       </div>
 
                       <div>
 
-                        <p className="text-sm text-slate-300">
+                        <p className="text-sm text-ink-700">
                           No pipeline runs found
                         </p>
 
-                        <p className="text-xs text-slate-500 mt-1">
+                        <p className="text-xs text-ink-500 mt-1">
                           Launch your first analysis using a benchmark
                           pathogen above.
                         </p>
@@ -460,18 +461,18 @@ export const DashboardPage: React.FC = () => {
 
                   <tr
                     key={run.id}
-                    className="hover:bg-slate-800/30 transition-colors"
+                    className="hover:bg-blue-50 transition-colors"
                   >
 
-                    <td className="py-3.5 px-4 text-slate-500">
+                    <td className="py-3.5 px-4 text-ink-500">
                       #{run.id}
                     </td>
 
-                    <td className="py-3.5 px-4 font-sans font-medium text-white">
+                    <td className="py-3.5 px-4 font-sans font-medium text-ink-900">
                       {run.title}
                     </td>
 
-                    <td className="py-3.5 px-4 text-cyan-400">
+                    <td className="py-3.5 px-4 text-brand-600">
                       {run.accession}
                     </td>
 
@@ -479,10 +480,10 @@ export const DashboardPage: React.FC = () => {
 
                       <div className="flex items-center gap-2">
 
-                        <div className="w-24 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                        <div className="w-24 h-1.5 rounded-full bg-blue-100 overflow-hidden">
 
                           <div
-                            className="h-full bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full"
+                            className="h-full bg-gradient-to-r from-brand-500 to-cyan-500 rounded-full"
                             style={{
                               width: `${(run.current_stage / run.total_stages) * 100}%`,
                             }}
@@ -490,7 +491,7 @@ export const DashboardPage: React.FC = () => {
 
                         </div>
 
-                        <span className="text-[11px] text-slate-500">
+                        <span className="text-[11px] text-ink-500">
                           {run.current_stage}/{run.total_stages}
                         </span>
 
@@ -506,7 +507,7 @@ export const DashboardPage: React.FC = () => {
 
                       <Link
                         to={`/pipeline/${run.id}`}
-                        className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 font-semibold"
+                        className="inline-flex items-center gap-1 text-xs text-brand-600 hover:text-brand-700 font-semibold"
                       >
                         View Pipeline
                         <ArrowRight className="w-3 h-3" />
@@ -531,3 +532,5 @@ export const DashboardPage: React.FC = () => {
     </div>
   );
 };
+
+export default DashboardPage;
