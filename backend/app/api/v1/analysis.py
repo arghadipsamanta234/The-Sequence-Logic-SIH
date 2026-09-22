@@ -172,7 +172,7 @@ async def execute_pipeline_stages(analysis_id: int, sequence: str, session: Sess
     session.add(antigen_entry)
     session.commit()
 
-    # --- STAGE 3 & 4: Dynamic Epitope Prediction from Input Sequence ---
+    # --- STAGE 3 & 4: Dynamic Epitope Prediction ---
     epitope_candidates = []
     seq_len = len(sequence)
     
