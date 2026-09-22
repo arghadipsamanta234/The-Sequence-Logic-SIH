@@ -165,7 +165,29 @@ export const ReportsPage: React.FC = () => {
           </table>
         </div>
       </div>
-
+{/* Bio-chemist View: Full Construct Sequence Box */}
+        <div className="mt-4 pt-4 border-t border-slate-800 space-y-3">
+          <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+            🧬 Lead Construct Full Amino Acid Sequence (FASTA)
+          </h4>
+          {report.candidates.map((c: any) => (
+            <div key={`seq-${c.name}`} className="space-y-1.5">
+              <div className="text-[11px] text-slate-400 font-medium">
+                {c.name} Complete Construct Sequence:
+              </div>
+              <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-[11px] text-emerald-300 break-all max-h-32 overflow-y-auto selection:bg-emerald-500 selection:text-slate-950">
+                {c.full_sequence || c.sequence || "কনস্ট্রাক্ট সিকোয়েন্স লোড হচ্ছে বা ব্যাকএন্ড থেকে পাঠানো হয়নি..."}
+              </div>
+              <button
+                onClick={() => navigator.clipboard.writeText(c.full_sequence || c.sequence || '')}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold transition-all border border-slate-700"
+              >
+                Copy Sequence for Wet-lab
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Complete Scientific Provenance Audit Table */}
       <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-4">
         <h3 className="text-base font-bold text-white">3. Immutable Provenance Audit Trail</h3>
