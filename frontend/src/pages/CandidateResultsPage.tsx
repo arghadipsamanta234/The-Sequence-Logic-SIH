@@ -168,15 +168,47 @@ export const CandidateResultsPage: React.FC = () => {
             </div>
 
             {/* Sequence & Linker Architecture Strip */}
-            <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/80 text-xs">
-              <span className="text-slate-400 font-medium">Modular Architecture:</span>{' '}
-              <span className="text-slate-200 font-mono">{candidate.name}: </span>
-              <span className="text-blue-400 font-mono">Adjuvant</span> +{' '}
-              <span className="text-purple-400 font-mono">EAAAK</span> +{' '}
-              <span className="text-emerald-400 font-mono">CTL (AAY)</span> +{' '}
-              <span className="text-amber-400 font-mono">HTL (GPGPG)</span> +{' '}
-              <span className="text-pink-400 font-mono">B-cell (KK)</span> +{' '}
-              <span className="text-slate-400 font-mono">6xHis</span>
+            <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/80 text-xs space-y-3">
+              <div>
+                <span className="text-slate-400 font-medium">Modular Architecture Formula:</span>{' '}
+                <span className="text-slate-200 font-mono">{candidate.name}: </span>
+                <span className="text-blue-400 font-mono">Adjuvant</span> +{' '}
+                <span className="text-purple-400 font-mono">EAAAK</span> +{' '}
+                <span className="text-emerald-400 font-mono">CTL (AAY)</span> +{' '}
+                <span className="text-amber-400 font-mono">HTL (GPGPG)</span> +{' '}
+                <span className="text-pink-400 font-mono">B-cell (KK)</span> +{' '}
+                <span className="text-slate-400 font-mono">6xHis</span>
+              </div>
+
+              {/* Detailed Component Assembly Grid (How components are linked) */}
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-2 pt-2 border-t border-slate-800/60 font-mono text-[11px]">
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-blue-400 font-bold block">ADJUVANT</span>
+                  <span className="text-white text-[10px] mt-0.5 block truncate" title={candidate.adjuvant}>
+                    {candidate.adjuvant || "50S L7/L12"}
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-purple-400 font-bold block">RIGID LINKER</span>
+                  <span className="text-white text-[10px] mt-0.5 block">EAAAK (Spacer)</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-emerald-400 font-bold block">CTL EPITOPES</span>
+                  <span className="text-white text-[10px] mt-0.5 block">AAY Linkers</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-amber-400 font-bold block">HTL EPITOPES</span>
+                  <span className="text-white text-[10px] mt-0.5 block">GPGPG Linkers</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-pink-400 font-bold block">B-CELL EPITOPES</span>
+                  <span className="text-white text-[10px] mt-0.5 block">KK Linkers</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-[10px] text-slate-400 font-bold block">TAG</span>
+                  <span className="text-white text-[10px] mt-0.5 block">6xHis Tag</span>
+                </div>
+              </div>
             </div>
           </div>
         ))}
