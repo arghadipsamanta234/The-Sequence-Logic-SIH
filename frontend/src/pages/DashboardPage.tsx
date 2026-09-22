@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import {
   PlusCircle,
   Dna,
@@ -8,8 +9,12 @@ import {
   Database,
   Layers,
   Sparkles,
-  Clock
+  Clock,
+  Activity,
+  FlaskConical,
+  ChevronRight,
 } from 'lucide-react';
+
 import { api } from '../services/api';
 import { StatusPill } from '../components/common/StatusPill';
 
@@ -23,8 +28,9 @@ export const DashboardPage: React.FC = () => {
       try {
         const [runs, benchs] = await Promise.all([
           api.listAnalyses(),
-          api.getBenchmarks()
+          api.getBenchmarks(),
         ]);
+
         setAnalyses(runs);
         setBenchmarks(benchs);
       } catch (err) {
@@ -33,188 +39,357 @@ export const DashboardPage: React.FC = () => {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
   return (
     <div className="space-y-8">
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/40 border border-slate-800 p-8 shadow-xl">
-        <div className="relative z-10 max-w-2xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>SIH 2026 Prototype • Working Computational Pipeline</span>
+      {/* HERO */}
+      <section className="relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-brand-50 via-white to-cyan-50 p-6 shadow-soft sm:p-8 lg:p-10">
+        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-100/70 blur-3xl" />
+        <div className="absolute -bottom-32 right-1/4 h-80 w-80 rounded-full bg-cyan-100/60 blur-3xl" />
+
+        <div className="relative z-10 max-w-4xl xl:max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white px-3 py-1.5 text-xs font-semibold text-brand-600 shadow-sm">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>SIH 2026 Prototype</span>
+            <span className="h-1 w-1 rounded-full bg-brand-400" />
+            <span className="text-ink-500">Computational Pipeline</span>
           </div>
-          <h2 className="text-3xl font-extrabold text-white tracking-tight leading-tight">
-            Sequence Logic: Rational Multi-Epitope Vaccine Architecture
+
+          <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
+            Rational Multi-Epitope
+            <span className="block bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 bg-clip-text text-transparent">
+              Vaccine Architecture
+            </span>
           </h2>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Automating the complete reverse-vaccinology pipeline from antigen sequence ingestion to epitope prediction,
-            safety filtering, construct design, structural modeling, receptor docking, and audit-ready research reporting.
+
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-ink-600 sm:text-base">
+            Automating the reverse-vaccinology workflow from antigen sequence
+            ingestion through epitope prediction, safety filtering, construct
+            design, structural analysis, receptor docking, and research
+            reporting.
           </p>
-          <div className="pt-2 flex items-center gap-4">
+
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
             <Link
               to="/new-analysis"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-bold text-white shadow-blue transition-all hover:bg-brand-600"
             >
-              <PlusCircle className="w-4 h-4" />
-              <span>Launch New Analysis</span>
+              <PlusCircle className="h-4 w-4" />
+              Launch New Analysis
+              <ArrowRight className="h-4 w-4" />
             </Link>
+
             <Link
               to="/sources"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm border border-slate-700 transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-blue-100 bg-white px-5 py-3 text-sm font-medium text-ink-700 shadow-sm transition-all hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700"
             >
-              <Database className="w-4 h-4" />
-              <span>View Data Sources</span>
+              <Database className="h-4 w-4 text-brand-500" />
+              View Data Sources
             </Link>
           </div>
         </div>
-      </div>
 
-      {/* Metrics Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Total Analyses</span>
-            <Layers className="w-4 h-4 text-emerald-400" />
+        <div className="absolute right-10 top-1/2 hidden h-64 w-64 -translate-y-1/2 items-center justify-center xl:flex">
+          <div className="absolute inset-8 rounded-full border border-brand-200" />
+          <div className="absolute inset-14 rounded-full border border-cyan-200" />
+
+          <div className="flex h-28 w-28 rotate-12 items-center justify-center rounded-3xl border border-brand-200 bg-brand-50 shadow-soft">
+            <Dna className="h-14 w-14 -rotate-12 text-brand-500" />
           </div>
-          <p className="text-2xl font-bold text-white mt-2">{analyses.length}</p>
-          <span className="text-[11px] text-slate-400">Tracked in SQLite database</span>
+
+          <div className="absolute right-8 top-8 h-3 w-3 rounded-full bg-brand-400 shadow-lg" />
+          <div className="absolute bottom-12 left-8 h-2 w-2 rounded-full bg-cyan-400" />
+          <div className="absolute right-0 top-1/2 h-2 w-2 rounded-full bg-brand-300" />
+        </div>
+      </section>
+
+      {/* STATISTICS */}
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-brand-200">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-ink-600">
+              Total Analyses
+            </span>
+
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50">
+              <Layers className="h-4 w-4 text-brand-500" />
+            </div>
+          </div>
+
+          <p className="mt-4 text-3xl font-bold text-ink-900">
+            {analyses.length}
+          </p>
+
+          <span className="text-[11px] text-ink-500">
+            Tracked in SQLite database
+          </span>
         </div>
 
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-cyan-200">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Curated Benchmarks</span>
-            <Dna className="w-4 h-4 text-teal-400" />
+            <span className="text-xs font-medium text-ink-600">
+              Curated Benchmarks
+            </span>
+
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-50">
+              <Dna className="h-4 w-4 text-cyan-600" />
+            </div>
           </div>
-          <p className="text-2xl font-bold text-white mt-2">{benchmarks.length}</p>
-          <span className="text-[11px] text-slate-400">Gold-standard reference pathogens</span>
+
+          <p className="mt-4 text-3xl font-bold text-ink-900">
+            {benchmarks.length}
+          </p>
+
+          <span className="text-[11px] text-ink-500">
+            Gold-standard reference pathogens
+          </span>
         </div>
 
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-indigo-200">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Active Pipeline Stages</span>
-            <Clock className="w-4 h-4 text-blue-400" />
+            <span className="text-xs font-medium text-ink-600">
+              Active Pipeline Stages
+            </span>
+
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50">
+              <Clock className="h-4 w-4 text-brand-500" />
+            </div>
           </div>
-          <p className="text-2xl font-bold text-white mt-2">9 / 9</p>
-          <span className="text-[11px] text-slate-400">Full end-to-end stages mapped</span>
+
+          <p className="mt-4 text-3xl font-bold text-ink-900">9 / 9</p>
+
+          <span className="text-[11px] text-ink-500">
+            Full end-to-end stages mapped
+          </span>
         </div>
 
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-emerald-200">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-400">Scientific Integrity</span>
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-          </div>
-          <p className="text-2xl font-bold text-emerald-400 mt-2">100%</p>
-          <span className="text-[11px] text-slate-400">Zero synthetic fabrication policy</span>
-        </div>
-      </div>
+            <span className="text-xs font-medium text-ink-600">
+              Scientific Integrity
+            </span>
 
-      {/* Quick Launch Gold-Standard Presets */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50">
+              <ShieldCheck className="h-4 w-4 text-emerald-500" />
+            </div>
+          </div>
+
+          <p className="mt-4 text-3xl font-bold text-emerald-600">100%</p>
+
+          <span className="text-[11px] text-ink-500">
+            Zero synthetic fabrication policy
+          </span>
+        </div>
+      </section>
+
+      {/* BENCHMARK PATHOGENS */}
+      <section className="space-y-4">
+        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
           <div>
-            <h3 className="text-lg font-bold text-white">Gold-Standard Benchmark Pathogens</h3>
-            <p className="text-xs text-slate-400">Real, peer-reviewed public biological data ready for immediate pipeline analysis</p>
+            <div className="flex items-center gap-2">
+              <FlaskConical className="h-5 w-5 text-brand-500" />
+
+              <h3 className="text-lg font-bold text-ink-900">
+                Gold-Standard Benchmark Pathogens
+              </h3>
+            </div>
+
+            <p className="mt-1 text-xs text-ink-500">
+              Real, peer-reviewed public biological data ready for immediate
+              pipeline analysis.
+            </p>
           </div>
+
+          <span className="text-[10px] uppercase tracking-wider text-ink-500">
+            {benchmarks.length} references
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {benchmarks.map((bench) => (
             <div
               key={bench.accession}
-              className="p-5 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between space-y-4"
+              className="group flex min-h-[220px] flex-col justify-between rounded-2xl border border-blue-100 bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="rounded-md border border-brand-100 bg-brand-50 px-2 py-1 font-mono text-[11px] text-brand-600">
                     {bench.accession}
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">{bench.sequence.length} aa</span>
+
+                  <span className="font-mono text-[11px] text-ink-500">
+                    {bench.sequence.length} aa
+                  </span>
                 </div>
-                <h4 className="font-semibold text-white text-base">{bench.name}</h4>
-                <p className="text-xs text-emerald-400/90 font-medium">{bench.organism}</p>
-                <p className="text-xs text-slate-400 mt-2 line-clamp-2">{bench.function_summary}</p>
+
+                <h4 className="text-base font-semibold text-ink-900">
+                  {bench.name}
+                </h4>
+
+                <p className="mt-1 text-xs font-medium text-brand-600">
+                  {bench.organism}
+                </p>
+
+                <p className="mt-3 line-clamp-3 text-xs leading-5 text-ink-500">
+                  {bench.function_summary}
+                </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-                <span className="text-[11px] text-slate-400">PDB: {bench.pdb_reference || 'Available'}</span>
+              <div className="mt-4 flex items-center justify-between border-t border-blue-100 pt-4">
+                <span className="text-[10px] text-ink-500">
+                  PDB: {bench.pdb_reference || 'Available'}
+                </span>
+
                 <Link
                   to={`/new-analysis?preset=${bench.accession}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400 hover:text-emerald-300"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 transition-colors hover:text-brand-700"
                 >
-                  <span>Load Preset</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  Load Preset
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Recent Analyses Table */}
-      <div className="space-y-4">
+      {/* RECENT PIPELINE EXECUTIONS */}
+      <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-white">Recent Pipeline Executions</h3>
-          <Link to="/new-analysis" className="text-xs font-medium text-emerald-400 hover:underline">
-            + Create New
+          <div>
+            <div className="flex items-center gap-2">
+              <Activity className="h-5 w-5 text-brand-500" />
+
+              <h3 className="text-lg font-bold text-ink-900">
+                Recent Pipeline Executions
+              </h3>
+            </div>
+
+            <p className="mt-1 text-xs text-ink-500">
+              Monitor recently submitted analysis workflows.
+            </p>
+          </div>
+
+          <Link
+            to="/new-analysis"
+            className="hidden items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 sm:inline-flex"
+          >
+            Create New
+            <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/30">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-900/80 text-xs uppercase text-slate-400 border-b border-slate-800">
+        <div className="overflow-x-auto rounded-2xl border border-blue-100 bg-white shadow-card">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-blue-100 bg-surface-blue text-[10px] uppercase tracking-wider text-ink-500">
               <tr>
-                <th className="py-3 px-4 font-semibold">ID</th>
-                <th className="py-3 px-4 font-semibold">Analysis Title</th>
-                <th className="py-3 px-4 font-semibold">Target Accession</th>
-                <th className="py-3 px-4 font-semibold">Progress</th>
-                <th className="py-3 px-4 font-semibold">Status</th>
-                <th className="py-3 px-4 font-semibold text-right">Actions</th>
+                <th className="px-4 py-3.5 font-semibold">ID</th>
+
+                <th className="px-4 py-3.5 font-semibold">
+                  Analysis Title
+                </th>
+
+                <th className="px-4 py-3.5 font-semibold">
+                  Target Accession
+                </th>
+
+                <th className="px-4 py-3.5 font-semibold">
+                  Progress
+                </th>
+
+                <th className="px-4 py-3.5 font-semibold">Status</th>
+
+                <th className="px-4 py-3.5 text-right font-semibold">
+                  Actions
+                </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono text-xs">
+
+            <tbody className="divide-y divide-blue-50 text-xs">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-400">
-                    Loading pipeline records...
+                  <td
+                    colSpan={6}
+                    className="py-12 text-center text-ink-500"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Activity className="h-4 w-4 animate-pulse text-brand-500" />
+                      Loading pipeline records...
+                    </div>
                   </td>
                 </tr>
               ) : analyses.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-400">
-                    No pipeline runs found. Launch your first analysis using a benchmark pathogen above!
+                  <td colSpan={6} className="py-12 text-center">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50">
+                        <Database className="h-5 w-5 text-brand-500" />
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-medium text-ink-800">
+                          No pipeline runs found
+                        </p>
+
+                        <p className="mt-1 text-xs text-ink-500">
+                          Launch your first analysis using a benchmark
+                          pathogen above.
+                        </p>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ) : (
                 analyses.map((run) => (
-                  <tr key={run.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-4 text-slate-400">#{run.id}</td>
-                    <td className="py-3.5 px-4 font-sans font-medium text-white">{run.title}</td>
-                    <td className="py-3.5 px-4 text-emerald-400">{run.accession}</td>
-                    <td className="py-3.5 px-4">
+                  <tr
+                    key={run.id}
+                    className="transition-colors hover:bg-brand-50/40"
+                  >
+                    <td className="px-4 py-3.5 font-mono text-ink-500">
+                      #{run.id}
+                    </td>
+
+                    <td className="px-4 py-3.5 font-medium text-ink-900">
+                      {run.title}
+                    </td>
+
+                    <td className="px-4 py-3.5 font-mono text-brand-600">
+                      {run.accession}
+                    </td>
+
+                    <td className="px-4 py-3.5">
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                        <div className="h-1.5 w-24 overflow-hidden rounded-full bg-blue-100">
                           <div
-                            className="h-full bg-emerald-500 rounded-full"
-                            style={{ width: `${(run.current_stage / run.total_stages) * 100}%` }}
+                            className="h-full rounded-full bg-gradient-to-r from-brand-500 to-cyan-500"
+                            style={{
+                              width: `${
+                                (run.current_stage / run.total_stages) * 100
+                              }%`,
+                            }}
                           />
                         </div>
-                        <span className="text-[11px] text-slate-400">
+
+                        <span className="text-[11px] text-ink-500">
                           {run.current_stage}/{run.total_stages}
                         </span>
                       </div>
                     </td>
-                    <td className="py-3.5 px-4 font-sans">
+
+                    <td className="px-4 py-3.5">
                       <StatusPill status={run.status} />
                     </td>
-                    <td className="py-3.5 px-4 text-right space-x-2 font-sans">
+
+                    <td className="px-4 py-3.5 text-right">
                       <Link
                         to={`/pipeline/${run.id}`}
-                        className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 font-medium"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700"
                       >
-                        <span>View Pipeline</span>
-                        <ArrowRight className="w-3 h-3" />
+                        View Pipeline
+                        <ArrowRight className="h-3 w-3" />
                       </Link>
                     </td>
                   </tr>
@@ -223,7 +398,9 @@ export const DashboardPage: React.FC = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
+
+export default DashboardPage;
