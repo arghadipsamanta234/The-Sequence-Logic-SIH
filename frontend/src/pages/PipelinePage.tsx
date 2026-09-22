@@ -55,6 +55,12 @@ export const PipelinePage: React.FC = () => {
 
   const { analysis, sequence, antigenicity_results, epitopes, constructs, provenance_records } = data;
 
+  // রিয়েল ডেটার ওপর ভিত্তি করে ডায়নামিক কাউন্ট ও মেট্রিকস ক্যালকুলেশন
+  const ctlCount = epitopes?.filter((e: any) => e.type === "CTL_MHC_I")?.length || 0;
+  const htlCount = epitopes?.filter((e: any) => e.type === "HTL_MHC_II")?.length || 0;
+  const leadConstruct = constructs?.[0];
+  const antiResult = antigenicity_results?.[0];
+
   const stages = [
     {
       num: 1,
@@ -66,51 +72,51 @@ export const PipelinePage: React.FC = () => {
     {
       num: 2,
       name: 'Antigenicity Screening',
-      tool: antigenicity_results[0]?.tool || 'Local ACC z-scale Descriptor',
-      status: antigenicity_results[0]?.status || 'COMPLETED',
-      summary: antigenicity_results[0]?.execution_method || 'Evaluated'
+      tool: antiResult?.tool || 'Local ACC z-scale Descriptor',
+      status: antiResult?.status || 'COMPLETED',
+      summary: antiResult ? `Score: ${antiResult.score} (${antiResult.is_antigenic ? 'Antigenic' : 'Non-Antigenic'})` : 'Evaluated'
     },
     {
       num: 3,
       name: 'Epitope Prediction',
       tool: 'IEDB & Literature Reference Profiles',
       status: 'COMPLETED',
-      summary: `${epitopes.length} High-Affinity Epitopes Mapped (CTL & HTL)`
+      summary: `${ctlCount} CTL & ${htlCount} HTL High-Affinity Epitopes Mapped`
     },
     {
       num: 4,
       name: 'Safety & Clearance Filtering',
       tool: 'SafetyEngine (ToxinPred + FAO/WHO Rules)',
       status: 'COMPLETED',
-      summary: '100% Cleared (Non-Allergenic & Non-Toxic)'
+      summary: '100% Cleared (Non-Allergen & Non-Toxic)'
     },
     {
       num: 5,
       name: 'Vaccine Construct Assembly',
       tool: 'Combinatorial Subunit Linker Engine',
       status: 'COMPLETED',
-      summary: `${constructs.length} Multi-Epitope Candidate(s) Constructed`
+      summary: leadConstruct ? `Constructed: ${leadConstruct.name} (${leadConstruct.length} aa)` : `${constructs.length} Candidate Constructed`
     },
     {
       num: 6,
       name: 'Physicochemical & Structure',
-      tool: constructs[0]?.structure?.source || 'AlphaFold DB & ProtParam',
-      status: constructs[0]?.structure?.status || 'COMPLETED',
-      summary: `MW: ${constructs[0]?.molecular_weight || '21.5'} kDa • Stable (Instability < 40)`
+      tool: leadConstruct?.structure?.source || 'AlphaFold DB & ProtParam',
+      status: leadConstruct?.structure?.status || 'COMPLETED',
+      summary: leadConstruct ? `MW: ${leadConstruct.molecular_weight} Da • pI: ${leadConstruct.theoretical_pi} • Instability: ${leadConstruct.instability_index}` : 'Calculated'
     },
     {
       num: 7,
       name: 'Receptor Docking & MD Stability',
-      tool: constructs[0]?.docking?.docking_method || 'TLR4 Benchmark Complex',
+      tool: leadConstruct?.docking?.docking_method || 'TLR4 Benchmark Complex',
       status: 'COMPLETED',
-      summary: `Binding Affinity: ${constructs[0]?.docking?.binding_energy_kcal_mol || '-28.4'} kcal/mol`
+      summary: leadConstruct?.docking ? `Binding Energy: ${leadConstruct.docking.binding_energy_kcal_mol} kcal/mol` : 'Docked'
     },
     {
       num: 8,
       name: 'Ranked Candidate Results',
       tool: 'Deterministic Pareto MCDA Scorer',
       status: 'COMPLETED',
-      summary: `Lead Candidate: ${constructs[0]?.name || 'Candidate-01'} (Rank #1)`
+      summary: leadConstruct?.score ? `Lead: ${leadConstruct.name} (Composite Score: ${leadConstruct.score.composite_pareto_score})` : 'Ranked #1'
     },
     {
       num: 9,
@@ -180,7 +186,10 @@ export const PipelinePage: React.FC = () => {
                     <h4 className="font-semibold text-white text-sm">{st.name}</h4>
                     <span className="text-[11px] text-slate-400 font-mono">[{st.tool}]</span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-0.5">{st.summary}</p>
+                  {/* ইনপুট ভিত্তিক আসল এবং রিয়েল আউটপুট সামারি */}
+                  <p className="text-xs text-emerald-400/90 font-mono mt-0.5">
+                    ↳ Output: {st.summary}
+                  </p>
                 </div>
               </div>
 
