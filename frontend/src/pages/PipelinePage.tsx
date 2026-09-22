@@ -55,7 +55,6 @@ export const PipelinePage: React.FC = () => {
 
   const { analysis, sequence, antigenicity_results, epitopes, constructs, provenance_records } = data;
 
-  // রিয়েল ডেটার ওপর ভিত্তি করে ডায়নামিক কাউন্ট ও মেট্রিকস ক্যালকুলেশন
   const ctlCount = epitopes?.filter((e: any) => e.type === "CTL_MHC_I")?.length || 0;
   const htlCount = epitopes?.filter((e: any) => e.type === "HTL_MHC_II")?.length || 0;
   const leadConstruct = constructs?.[0];
@@ -164,7 +163,7 @@ export const PipelinePage: React.FC = () => {
         </div>
       </div>
 
-      {/* 9-Stage Visual Workflow Card */}
+      {/* 9-Stage Visual Workflow Card with Data Flow */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-white">Rational Reverse-Vaccinology Stages</h3>
@@ -172,30 +171,39 @@ export const PipelinePage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-3">
-          {stages.map((st) => (
+          {stages.map((st, index) => (
             <div
               key={st.num}
-              className="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-slate-700 transition-all flex items-center justify-between"
+              className="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-slate-700 transition-all flex flex-col gap-2"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
-                  {st.num}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-semibold text-white text-sm">{st.name}</h4>
-                    <span className="text-[11px] text-slate-400 font-mono">[{st.tool}]</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+                    {st.num}
                   </div>
-                  {/* ইনপুট ভিত্তিক আসল এবং রিয়েল আউটপুট সামারি */}
-                  <p className="text-xs text-emerald-400/90 font-mono mt-0.5">
-                    ↳ Output: {st.summary}
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-semibold text-white text-sm">{st.name}</h4>
+                      <span className="text-[11px] text-slate-400 font-mono">[{st.tool}]</span>
+                    </div>
+                    {/* স্টেপের রিয়েল আউটপুট */}
+                    <p className="text-xs text-emerald-400 font-mono mt-1">
+                      ↳ Output: {st.summary}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <StatusPill status={st.status} />
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <StatusPill status={st.status} />
-              </div>
+              {/* পরবর্তী স্টেপে ডেটা প্রবাহ (Data Flow Indicator) */}
+              {index < stages.length - 1 && (
+                <div className="pl-12 pt-1 text-[11px] text-sky-400 font-mono flex items-center gap-1.5 opacity-80">
+                  <span>↓ Passed as Input to Stage {st.num + 1}</span>
+                </div>
+              )}
             </div>
           ))}
         </div>
