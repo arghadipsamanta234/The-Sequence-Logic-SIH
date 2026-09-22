@@ -132,8 +132,7 @@ export const ReportsPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Candidate Summary Table */}
+  {/* Candidate Summary Table */}
       <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-4">
         <h3 className="text-base font-bold text-white">2. Lead Vaccine Constructs</h3>
         <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/40">
@@ -164,8 +163,8 @@ export const ReportsPage: React.FC = () => {
             </tbody>
           </table>
         </div>
-      </div>
-{/* Bio-chemist View: Full Construct Sequence Box */}
+
+        {/* Bio-chemist View: Full Construct Sequence Box */}
         <div className="mt-4 pt-4 border-t border-slate-800 space-y-3">
           <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
             🧬 Lead Construct Full Amino Acid Sequence (FASTA)
@@ -176,7 +175,7 @@ export const ReportsPage: React.FC = () => {
                 {c.name} Complete Construct Sequence:
               </div>
               <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-[11px] text-emerald-300 break-all max-h-32 overflow-y-auto selection:bg-emerald-500 selection:text-slate-950">
-                {c.full_sequence || c.sequence || "কনস্ট্রাক্ট সিকোয়েন্স লোড হচ্ছে বা ব্যাকএন্ড থেকে পাঠানো হয়নি..."}
+                {c.full_sequence || c.sequence || "কনস্ট্রাক্ট সিকোয়েন্স লোড হচ্ছে..."}
               </div>
               <button
                 onClick={() => navigator.clipboard.writeText(c.full_sequence || c.sequence || '')}
@@ -188,6 +187,7 @@ export const ReportsPage: React.FC = () => {
           ))}
         </div>
       </div>
+     
       {/* Complete Scientific Provenance Audit Table */}
       <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-4">
         <h3 className="text-base font-bold text-white">3. Immutable Provenance Audit Trail</h3>
