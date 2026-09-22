@@ -47,7 +47,7 @@ async def list_sources_status():
             "id": "ncbi",
             "name": "NCBI Entrez E-Utilities",
             "category": "GenBank & RefSeq Database",
-            "url": "https://www.ncbi.nlm.nih.gov/",
+            "url": "https://www.ncbi.nlm.nih.gov/home/develop/api/",
             "type": "REST API",
             "status": "CONNECTED",
             "is_local": False,
