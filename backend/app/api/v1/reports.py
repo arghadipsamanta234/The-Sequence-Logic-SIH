@@ -43,7 +43,8 @@ async def get_analysis_report(
             "pi": c.theoretical_pi,
             "instability": c.instability_index,
             "composite_score": score.composite_pareto_score if score else 0.0,
-            "rank": score.rank if score else 1
+            "rank": score.rank if score else 1,
+            "full_sequence": getattr(c, "sequence", getattr(c, "full_sequence", ""))  # সিকোয়েন্স ফিল্ড যুক্ত করা হলো
         })
 
     report_payload = {
