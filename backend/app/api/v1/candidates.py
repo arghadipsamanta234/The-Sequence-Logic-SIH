@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session, select
 from app.db.session import get_session
-from app.db.models import Construct, CandidateScore, Structure, DockingResult, AnalysisRun
+from app.db.models import Construct, CandidateScore, Structure, DockingResult, AnalysisRun, Epitope
 
 router = APIRouter(prefix="/candidates", tags=["Candidates & Structural Details"])
 
@@ -28,13 +28,20 @@ async def get_candidate_detail(
     structure = session.exec(select(Structure).where(Structure.construct_id == construct_id)).first()
     analysis = session.get(AnalysisRun, construct.analysis_id)
 
-    # Breakdown components for visual construct viewer
+    # ডাইনামিক এপিটোপ এক্সট্রাকশন ও কাউন্ট (ইনপুট অনুযায়ী রিয়েল ডাটা ক্যালকুলেশন)
+    epitopes = session.exec(select(Epitope).where(Epitope.analysis_id == construct.analysis_id)).all()
+    
+    ctl_count = len([e for e in epitopes if e.epitope_type == "CTL_MHC_I"])
+    htl_count = len([e for e in epitopes if e.epitope_type == "HTL_MHC_II"])
+    bcell_count = len([e for e in epitopes if e.epitope_type in ["B_CELL", "LINEAR_B_CELL"]])
+
+    # Breakdown components for visual construct viewer (Fully Dynamic)
     components = [
         {"type": "Adjuvant", "name": construct.adjuvant_name, "length": len(construct.adjuvant_sequence or ""), "color": "#3B82F6"},
         {"type": "Rigid Linker", "sequence": "EAAAK", "color": "#8B5CF6"},
-        {"type": "CTL Epitope Core", "sequence": "Multi-epitope cassette (AAY linkers)", "color": "#10B981"},
-        {"type": "HTL Epitope Core", "sequence": "Helper cassette (GPGPG linkers)", "color": "#F59E0B"},
-        {"type": "B-cell Epitope Core", "sequence": "B-cell cassette (KK linkers)", "color": "#EC4899"},
+        {"type": "CTL Epitope Core", "sequence": f"{max(ctl_count, 1)} Epitopes (AAY linkers)", "color": "#10B981"},
+        {"type": "HTL Epitope Core", "sequence": f"{max(htl_count, 1)} Epitopes (GPGPG linkers)", "color": "#F59E0B"},
+        {"type": "B-cell Epitope Core", "sequence": f"{max(bcell_count, 1)} Epitopes (KK linkers)", "color": "#EC4899"},
         {"type": "Purification Tag", "sequence": "6x-His (HHHHHH)", "color": "#6B7280"}
     ]
 
